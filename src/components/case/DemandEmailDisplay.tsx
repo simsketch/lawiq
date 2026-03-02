@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 interface Props {
   caseId: string;
@@ -38,7 +38,6 @@ export default function DemandEmailDisplay({ caseId, initialEmail, initialStatus
         if (done) break;
         buffer += decoder.decode(value, { stream: true });
         setEmail(buffer);
-        // Auto-scroll
         if (textareaRef.current) {
           textareaRef.current.scrollTop = textareaRef.current.scrollHeight;
         }
@@ -60,20 +59,20 @@ export default function DemandEmailDisplay({ caseId, initialEmail, initialStatus
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       {/* Status + controls */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <h2 className="text-xl font-bold text-gray-900">Demand Letter</h2>
+          <h2 className="font-display text-2xl font-light" style={{ color: 'var(--text-1)' }}>Demand Letter</h2>
           {status === 'complete' && (
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700 ring-1 ring-green-200">
-              <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+            <span className="badge badge-ready">
+              <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
               Ready
             </span>
           )}
           {status === 'analyzing' && (
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 ring-1 ring-blue-200">
-              <svg className="w-3 h-3 animate-spin" fill="none" viewBox="0 0 24 24">
+            <span className="badge badge-generating">
+              <svg className="w-3 h-3 animate-spin-slow" fill="none" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>
@@ -84,13 +83,10 @@ export default function DemandEmailDisplay({ caseId, initialEmail, initialStatus
 
         <div className="flex items-center gap-2">
           {status === 'complete' && email && (
-            <button
-              onClick={copyToClipboard}
-              className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm transition hover:bg-gray-50"
-            >
+            <button onClick={copyToClipboard} className="btn btn-glass" style={{ fontSize: '0.875rem', padding: '0.5rem 1rem' }}>
               {copied ? (
                 <>
-                  <svg className="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} style={{ color: '#4ade80' }}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                   Copied!
@@ -108,11 +104,12 @@ export default function DemandEmailDisplay({ caseId, initialEmail, initialStatus
           <button
             onClick={generate}
             disabled={generating}
-            className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed"
+            className="btn btn-primary"
+            style={{ fontSize: '0.875rem', padding: '0.5rem 1rem' }}
           >
             {generating ? (
               <>
-                <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 animate-spin-slow" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                 </svg>
@@ -128,31 +125,32 @@ export default function DemandEmailDisplay({ caseId, initialEmail, initialStatus
       </div>
 
       {error && (
-        <div className="rounded-xl bg-red-50 border border-red-200 p-4 text-sm text-red-700">
+        <div className="rounded-xl p-4 text-sm" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.3)', color: '#fca5a5' }}>
           {error}
         </div>
       )}
 
       {/* Letter display */}
       {(email || generating) ? (
-        <div className="relative">
+        <div className="glass-card rounded-2xl overflow-hidden">
           <pre
             ref={textareaRef}
-            className="w-full rounded-xl border border-gray-200 bg-white p-6 text-sm text-gray-800 leading-relaxed whitespace-pre-wrap font-sans min-h-[400px] max-h-[600px] overflow-y-auto shadow-sm"
+            className="w-full p-6 text-sm leading-relaxed whitespace-pre-wrap font-sans min-h-[400px] max-h-[600px] overflow-y-auto"
+            style={{ color: 'var(--text-1)', fontFamily: 'var(--font-body), system-ui, sans-serif' }}
           >
             {email}
             {generating && (
-              <span className="inline-block w-1.5 h-4 bg-blue-500 animate-pulse ml-0.5 align-text-bottom" />
+              <span className="inline-block w-1.5 h-4 ml-0.5 align-text-bottom animate-blink" style={{ background: '#60a5fa' }} />
             )}
           </pre>
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-200 bg-gray-50 py-20 text-center">
-          <svg className="w-10 h-10 text-gray-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
+        <div className="glass-card flex flex-col items-center justify-center rounded-2xl py-20 text-center">
+          <svg className="w-10 h-10 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1} style={{ color: 'var(--text-4)' }}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
           </svg>
-          <p className="text-gray-500 font-medium">Your demand letter will appear here</p>
-          <p className="text-sm text-gray-400 mt-1">Click "Generate Letter" to create your personalized demand</p>
+          <p className="font-medium mb-1" style={{ color: 'var(--text-2)' }}>Your demand letter will appear here</p>
+          <p className="text-sm" style={{ color: 'var(--text-3)' }}>Click &ldquo;Generate Letter&rdquo; to create your personalized demand</p>
         </div>
       )}
     </div>

@@ -114,13 +114,19 @@ export default function WizardShell() {
   const stepProps = { form, update, onNext: next, onBack: back };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen relative" style={{ background: 'var(--bg-base)' }}>
+      <div className="orb-field">
+        <div className="orb orb-a" />
+        <div className="orb orb-b" />
+        <div className="orb orb-c" />
+      </div>
+
       {/* Header */}
-      <div className="bg-white border-b border-gray-100 px-6 py-4">
+      <div className="glass-nav sticky top-0 z-50 px-6 py-4">
         <div className="mx-auto max-w-2xl">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-600 text-white font-bold text-xs">LQ</div>
-            <span className="font-bold text-gray-900">LawIQ</span>
+          <div className="flex items-center gap-2.5 mb-4">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg text-white font-bold text-xs" style={{ background: 'linear-gradient(135deg, #3b82f6, #4f46e5)' }}>LQ</div>
+            <span className="font-bold text-white">LawIQ</span>
           </div>
           {/* Progress bar */}
           <div className="flex items-center gap-2">
@@ -132,22 +138,24 @@ export default function WizardShell() {
                 <div key={label} className="flex items-center gap-2 flex-1 last:flex-none">
                   <div className="flex flex-col items-center gap-1 min-w-0">
                     <div
-                      className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold transition-colors ${
-                        isComplete
-                          ? 'bg-blue-600 text-white'
+                      className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold transition-all ${isCurrent ? 'ring-2 ring-blue-500' : ''}`}
+                      style={{
+                        background: isComplete
+                          ? 'linear-gradient(135deg, #2563eb, #4f46e5)'
                           : isCurrent
-                          ? 'bg-blue-100 text-blue-700 ring-2 ring-blue-600'
-                          : 'bg-gray-100 text-gray-400'
-                      }`}
+                          ? 'rgba(59,130,246,0.15)'
+                          : 'rgba(255,255,255,0.06)',
+                        color: isComplete ? '#fff' : isCurrent ? '#93c5fd' : 'var(--text-4)',
+                      }}
                     >
                       {isComplete ? '✓' : num}
                     </div>
-                    <span className={`text-xs hidden sm:block truncate ${isCurrent ? 'text-blue-700 font-medium' : 'text-gray-400'}`}>
+                    <span className={`text-xs hidden sm:block truncate ${isCurrent ? 'font-medium' : ''}`} style={{ color: isCurrent ? '#93c5fd' : 'var(--text-4)' }}>
                       {label}
                     </span>
                   </div>
                   {i < STEPS.length - 1 && (
-                    <div className={`h-0.5 flex-1 mt-[-14px] rounded ${num < step ? 'bg-blue-600' : 'bg-gray-200'}`} />
+                    <div className="h-px flex-1 mt-[-14px] rounded" style={{ background: num < step ? 'linear-gradient(90deg, #2563eb, #4f46e5)' : 'var(--glass-border)' }} />
                   )}
                 </div>
               );
@@ -157,7 +165,7 @@ export default function WizardShell() {
       </div>
 
       {/* Step content */}
-      <div className="mx-auto max-w-2xl px-6 py-10">
+      <div className="relative z-10 mx-auto max-w-2xl px-6 py-10">
         {step === 1 && <Step1Employment {...stepProps} />}
         {step === 2 && <Step2Severance {...stepProps} />}
         {step === 3 && <Step3Wages {...stepProps} />}
