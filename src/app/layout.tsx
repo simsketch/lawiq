@@ -17,6 +17,12 @@ const figtree = Figtree({
 export const metadata: Metadata = {
   title: "LawIQ — Know What You're Owed",
   description: "Your employer may owe you more. LawIQ calculates your entitlements and writes a professional demand letter.",
+  icons: {
+    icon: [
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-icon',
+  },
 };
 
 export default function RootLayout({

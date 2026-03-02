@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="55%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon mark: rounded square -->
+  <rect width="48" height="48" rx="11" fill="url(#grad)"/>
+  <text x="24" y="33" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="17" fill="white" text-anchor="middle" letter-spacing="-0.5">LQ</text>
+
+  <!-- Wordmark -->
+  <text x="62" y="34" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="22" fill="white" letter-spacing="-0.5">LawIQ</text>
+</svg>
