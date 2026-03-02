@@ -5,6 +5,7 @@ import { cases } from '@/db/schema';
 import { eq, desc } from 'drizzle-orm';
 import CaseCard from '@/components/dashboard/CaseCard';
 import OrbBackground from '@/components/OrbBackground';
+import LogoMark from '@/components/LogoMark';
 import Link from 'next/link';
 import { UserButton } from '@clerk/nextjs';
 
@@ -26,7 +27,7 @@ export default async function DashboardPage() {
       <nav className="glass-nav sticky top-0 z-50 px-6 py-4">
         <div className="mx-auto max-w-5xl flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg text-white font-bold text-sm" style={{ background: 'linear-gradient(135deg, #3b82f6, #4f46e5)' }}>LQ</div>
+            <LogoMark size={32} />
             <span className="font-bold text-white text-lg tracking-tight">LawIQ</span>
           </div>
           <div className="flex items-center gap-4">

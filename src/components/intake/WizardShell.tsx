@@ -8,6 +8,7 @@ import Step3Wages from './Step3Wages';
 import Step4Narrative from './Step4Narrative';
 import Step5ReviewDemands from './Step5ReviewDemands';
 import { calculateExpectedSeverance, calculateExpectedBenefits } from '@/lib/calculations';
+import LogoMark from '@/components/LogoMark';
 
 export interface FormData {
   // Step 1
@@ -125,7 +126,7 @@ export default function WizardShell() {
       <div className="glass-nav sticky top-0 z-50 px-6 py-4">
         <div className="mx-auto max-w-2xl">
           <div className="flex items-center gap-2.5 mb-4">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg text-white font-bold text-xs" style={{ background: 'linear-gradient(135deg, #3b82f6, #4f46e5)' }}>LQ</div>
+            <LogoMark size={28} />
             <span className="font-bold text-white">LawIQ</span>
           </div>
           {/* Progress bar */}

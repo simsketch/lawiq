@@ -6,6 +6,7 @@ import { eq, and } from 'drizzle-orm';
 import DemandEmailDisplay from '@/components/case/DemandEmailDisplay';
 import CaseSidebar from '@/components/case/CaseSidebar';
 import OrbBackground from '@/components/OrbBackground';
+import LogoMark from '@/components/LogoMark';
 import Link from 'next/link';
 
 interface Props {
@@ -41,7 +42,7 @@ export default async function CaseDetailPage({ params }: Props) {
             </Link>
             <span style={{ color: 'var(--text-4)' }}>/</span>
             <div className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-lg text-white font-bold text-xs" style={{ background: 'linear-gradient(135deg, #3b82f6, #4f46e5)' }}>LQ</div>
+              <LogoMark size={28} />
               <span className="font-bold text-white">LawIQ</span>
             </div>
           </div>

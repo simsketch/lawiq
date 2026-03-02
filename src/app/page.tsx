@@ -2,6 +2,7 @@ import Hero from '@/components/landing/Hero';
 import HowItWorks from '@/components/landing/HowItWorks';
 import UseCases from '@/components/landing/UseCases';
 import OrbBackground from '@/components/OrbBackground';
+import LogoMark from '@/components/LogoMark';
 import Link from 'next/link';
 
 export default function LandingPage() {
@@ -13,9 +14,7 @@ export default function LandingPage() {
       <nav className="glass-nav sticky top-0 z-50 px-6 py-4">
         <div className="mx-auto max-w-6xl flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg text-white font-bold text-sm shadow-lg" style={{ background: 'linear-gradient(135deg, #3b82f6, #4f46e5)' }}>
-              LQ
-            </div>
+            <LogoMark size={32} />
             <span className="font-bold text-white text-lg tracking-tight">LawIQ</span>
           </div>
           <div className="flex items-center gap-3">
@@ -43,9 +42,7 @@ export default function LandingPage() {
       <footer className="relative z-10 py-10" style={{ borderTop: '1px solid var(--glass-border)' }}>
         <div className="mx-auto max-w-6xl px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg text-white font-bold text-xs" style={{ background: 'linear-gradient(135deg, #3b82f6, #4f46e5)' }}>
-              LQ
-            </div>
+            <LogoMark size={28} />
             <span className="font-semibold text-white">LawIQ</span>
           </div>
           <p className="text-sm text-center" style={{ color: 'var(--text-3)' }}>
