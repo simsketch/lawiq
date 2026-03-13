@@ -4,6 +4,7 @@ export default {
   schema: './src/db/schema.ts',
   out: './drizzle',
   dialect: 'postgresql',
+  schemaFilter: ['lawiq'],
   dbCredentials: {
     url: process.env.DATABASE_URL_UNPOOLED!,
   },

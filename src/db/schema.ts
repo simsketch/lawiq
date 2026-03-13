@@ -1,6 +1,8 @@
-import { pgTable, uuid, text, timestamp, numeric, integer, boolean, jsonb } from 'drizzle-orm/pg-core';
+import { pgSchema, uuid, text, timestamp, numeric, integer, boolean, jsonb } from 'drizzle-orm/pg-core';
 
-export const cases = pgTable('lawiq_cases', {
+export const lawiqSchema = pgSchema('lawiq');
+
+export const cases = lawiqSchema.table('cases', {
   id: uuid('id').defaultRandom().primaryKey(),
   userId: text('user_id').notNull(),
 
